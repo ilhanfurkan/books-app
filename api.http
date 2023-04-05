@@ -1,3 +1,5 @@
+//npm run server 
+
 //get all
 
 GET http://localhost:3001/books HTTP/1.1

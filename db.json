@@ -25,20 +25,28 @@
       "id": 16
     },
     {
-      "title": "Dark Tower",
-      "id": 17
-    },
-    {
-      "title": "Paris",
-      "id": 18
-    },
-    {
       "title": "Newcastle",
       "id": 19
     },
     {
       "title": "Moscow",
       "id": 20
+    },
+    {
+      "title": "Paris",
+      "id": 22
+    },
+    {
+      "title": "Mississippi",
+      "id": 23
+    },
+    {
+      "title": "Madrid",
+      "id": 24
+    },
+    {
+      "title": "Sevilla",
+      "id": 26
     }
   ]
 }

@@ -1,62 +1,35 @@
-import React, { useEffect, useState } from 'react'
-import BookCreate from './components/BookCreate';
-import BookList from './components/BookList';
-import axios from 'axios';
-
+import React, { useEffect, useContext } from "react";
+import BookCreate from "./components/BookCreate";
+import BookList from "./components/BookList";
+import BooksContext from "./context/books";
 
 const App = () => {
-  const [books, setBooks] = useState([]);
-
-  const fetchBooks = async () => {
-    const response = await axios.get('http://localhost:3001/books');
-
-    setBooks(response.data);
-  }
+  const { fetchBooks } = useContext(BooksContext);
 
   useEffect(() => {
     fetchBooks();
-  }, [])
+  }, [fetchBooks]);
 
-  const createBook = async (title) => {
-    const response = await axios.post('http://localhost:3001/books',{
-      title,
-    })
-    const updatedBooks = [...books,response.data];
-    setBooks(updatedBooks);
-  }
-
-  const removeBook = async (id) => {
-    await axios.delete(`http://localhost:3001/books/${id}` , {
-      id,
-    })
-    const updatedBooks = books.filter((book) => {
-      return book.id !== id;
-    });
-    
-    setBooks(updatedBooks);
-  };
-
-  const changeTitle = async (id, newTitle) => {
-
-const response = await axios.put(`http://localhost:3001/books/${id}`, {
-  title: newTitle,
-});
-
-    const updatedBooks = books.map((book) => {
-      if (book.id === id) {
-        return { ...book, ...response.data };
-      }
-      return book;
-    });
-  
-    setBooks(updatedBooks);
-  };
-    return (
-      <div className='app' >
-        <BookList books={books} onDelete={removeBook} onEdit={changeTitle} />
-        <BookCreate onSubmit={createBook} />
+  return (
+    <div className="app">
+      <div
+        style={{
+          fontSize: "25px",
+          height: "50px",
+          backgroundColor: "#7c9c85",
+          fontWeight: "bold",
+          color: "white",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        Add To Book Archive
       </div>
-    )
-  }
+      <BookList />
+      <BookCreate />
+    </div>
+  );
+};
 
-  export default App
+export default App;
